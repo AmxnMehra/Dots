@@ -1,0 +1,56 @@
+# test
+
+[general]
+live_config_reload = true
+working_directory = "None"
+import = ["~/.config/alacritty/theme-dark.toml"]
+
+[colors.selection]
+background = "CellForeground"
+text = "CellBackground"
+
+[colors.vi_mode_cursor]
+cursor = "CellForeground"
+text = "CellBackground"
+
+[cursor]
+style = "Beam"
+vi_mode_style = "None"
+
+[font]
+size = 15
+
+[font.bold]
+family = "Fira Code Nerd Font"
+style = "Bold"
+
+[font.glyph_offset]
+y = 0
+
+[font.italic]
+family = "Fira Code Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "Fira Code Nerd Font"
+style = "Regular"
+
+[font.offset]
+y = 0
+
+[scrolling]
+history = 10000
+multiplier = 5
+
+[window]
+decorations = "none"
+title = "Terminal"
+blur = true
+
+[window.dimensions]
+columns = 80
+lines = 35
+
+[window.padding]
+x = 10
+y = 10

@@ -1,0 +1,36 @@
+[colors.primary]
+background = "0xffffff"
+foreground = "0x1F2328"
+
+[colors.bright]
+black = "0x24292f"
+blue = "0x0969da"
+cyan = "0x1b7c83"
+green = "0x116329"
+magenta = "0x8250df"
+red = "0xcf222e"
+white = "0x6e7781"
+yellow = "0x4d2d00"
+
+[colors.normal]
+black = "0x57606a"
+blue = "0x218bff"
+cyan = "0x1b7c83"
+green = "0x1a7f37"
+magenta = "0x8250df"
+red = "0xa40e26"
+white = "0x6e7781"
+yellow = "0x633c01"
+
+[colors.search.focused_match]
+background = "0x1b7c83"
+foreground = "0x57606a"
+
+[colors.search.matches]
+background = "0x1b7c83"
+foreground = "0x57606a"
+
+[window]
+opacity = 1
+blur = true
+decorations_theme_variant = "Light"
