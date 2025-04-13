@@ -18,6 +18,9 @@ return {
 					["<C-k>"] = false,
 					["<C-j>"] = false,
 					["<M-h>"] = "actions.select_split",
+					["q"] = function()
+						vim.cmd("q")
+					end,
 				},
 				win_options = {
 					winbar = "%{v:lua.CustomOilBar()}",
