@@ -50,17 +50,17 @@ return {
     keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
 
     -- 👇 Auto-open nvim-tree properly on startup if it's a directory or no file
-    vim.api.nvim_create_autocmd("VimEnter", {
-      callback = function(data)
-        -- If Neovim is launched with a directory or no file, open nvim-tree
-        local directory = vim.fn.isdirectory(data.file) == 1
-        if directory then
-          vim.cmd.cd(data.file)
-          require("nvim-tree.api").tree.open()
-        elseif data.file == "" then
-          require("nvim-tree.api").tree.open()
-        end
-      end,
-    })
+    -- vim.api.nvim_create_autocmd("VimEnter", {
+    --   callback = function(data)
+    --     -- If Neovim is launched with a directory or no file, open nvim-tree
+    --     local directory = vim.fn.isdirectory(data.file) == 1
+    --     if directory then
+    --       vim.cmd.cd(data.file)
+    --       require("nvim-tree.api").tree.open()
+    --     elseif data.file == "" then
+    --       require("nvim-tree.api").tree.open()
+    --     end
+    --   end,
+    -- })
   end,
 }
