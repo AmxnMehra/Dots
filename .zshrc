@@ -82,6 +82,31 @@ alias e='exit'
 alias c='clear'
 # Shell integrations
 eval "$(fzf --zsh)"
+
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git " export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+fzf_open_file() {
+  local file
+  file=$(fd --hidden --exclude .git | fzf --preview 'bat --color=always --line-range :300 {}') && nvim "$file"
+  zle reset-prompt
+}
+
+zle -N fzf_open_file
+bindkey '^T' fzf_open_file
+
+export FZF_DEFAULT_OPTS="--height 50% --layout=default --border --color=hl:#2dd4bf"
+
+# Setup fzf previews
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always -n --line-range :500 {}'"
+export FZF_ALT_C_OPTS="--preview 'eza --icons=always --tree --color=always {} | head -200'"
+
+# fzf preview for tmux
+export FZF_TMUX_OPTS=" -p90%,70% "  
+
+# FZF with Git right in the shell by Junegunn : check out his github below
+# Keymaps for this is available at https://github.com/junegunn/fzf-git.sh
+source ~/scripts/fzf-git.sh
 eval "$(zoxide init --cmd cd zsh)"
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
