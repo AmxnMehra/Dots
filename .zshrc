@@ -107,7 +107,7 @@ export FZF_TMUX_OPTS=" -p90%,70% "
 # FZF with Git right in the shell by Junegunn : check out his github below
 # Keymaps for this is available at https://github.com/junegunn/fzf-git.sh
 source ~/scripts/fzf-git.sh
-eval "$(zoxide init --cmd cd zsh)"
+eval "$(zoxide init  zsh)"
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
