@@ -1,0 +1,23 @@
+/*****----- Main -----*****/
+@theme "~/.config/rofi/theme.rasi"
+
+/*****----- Main Window -----*****/
+listbox {
+  children:                    [ "message" ];
+}
+
+/*****----- Mode Switcher -----*****/
+mode-switcher {
+  enabled:                     false;
+}
+
+/*****----- Listview -----*****/
+listview {
+  enabled:                     false;
+}
+
+/*****----- Elements -----*****/
+element {
+  enabled:                     false;
+}
+
