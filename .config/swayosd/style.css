@@ -1,0 +1,72 @@
+@define-color background    @theme_bg_color;
+@define-color backgroundm   alpha(@theme_bg_color, 0.75);
+@define-color backgroundn   alpha(@theme_bg_color, 0.25);
+@define-color accent-bg     @theme_selected_bg_color;
+@define-color accent-fg     @theme_selected_fg_color;
+@define-color foreground    @theme_fg_color;
+@define-color border        @borders;
+@define-color text          @theme_text_color;
+
+* {
+  all: unset;
+  border-radius: 6px;
+  min-width: 0;
+}
+
+window#osd {
+  background: @backgroundm;
+  color: @text;
+  border: 1px solid @border;
+}
+
+#container {
+  margin: 10px 12px;
+}
+
+progressbar {
+  background: @backgroundm;
+  color: @text;
+  padding: 10px;
+  border: 1px solid @border;
+  min-width: 10rem;
+}
+
+trough {
+  background: @backgroundn;
+  border: 1px solid @border;
+  min-height: 25px;
+}
+
+progress {
+  background: @accent-bg;
+  border: 1px solid @border;
+  /* border-right: 2px solid @border; */
+  margin: 0;
+  transition: all 0.25s ease;
+  min-height: 25px;
+}
+
+image,
+label {
+  background: @backgroundm;
+  color: @text;
+  padding: 5px;
+  border: 1px solid @border;
+  text-shadow:
+    -1px -1px 2px @background,
+    1px -1px 2px @background,
+    -1px 1px 2px @background,
+    1px 1px 2px @background;
+  font-family: "Fira Sans Regular";
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 40px;
+  min-height: 40px;
+  margin: 0 -2px;
+}
+
+progressbar:disabled,
+image:disabled,
+label:disabled {
+  opacity: 0.5;
+}
