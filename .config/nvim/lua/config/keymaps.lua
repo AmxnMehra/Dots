@@ -1,3 +1,6 @@
+-- Keymaps are automatically loaded on the VeryLazy event
+-- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+-- Add any additional keymaps here
 -- This file is automatically loaded by lazyvim.config.init
 
 -- DO NOT USE `LazyVim.safe_keymap_set` IN YOUR OWN CONFIG!!
@@ -223,7 +226,7 @@ end
 
 local keymap = vim.keymap -- for conciseness
 -- clear search highlights
-keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+keymap.set("n", "<leader>hh", ":nohl<CR>", { desc = "Clear search highlights" })
 -- insert mode movement
 keymap.set("i", "<C-h>", "<Left>", { desc = "Move left" })
 keymap.set("i", "<C-l>", "<Right>", { desc = "Move right" })
