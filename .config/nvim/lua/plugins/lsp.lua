@@ -1,59 +1,74 @@
 ---@diagnostic disable: missing-fields
 return {
   -- lsp servers
+
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      diagnostics = { virtual_text = { prefix = "icons" } },
-      capabilities = {
-        workspace = {
-          didChangeWatchedFiles = {
-            dynamicRegistration = false,
-          },
+    opts = function(_, opts)
+      local Keys = require("lazyvim.plugins.lsp.keymaps").get()
+      vim.list_extend(Keys, {
+        {
+          "gd",
+          function()
+            Snacks.picker.lsp_definitions()
+          end,
+          desc = "Goto Definition",
+          has = "definition",
         },
-      },
-      servers = {
-        lua_ls = {
-          -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
-          -- single_file_support = true,
-          settings = {
-            Lua = {
-              misc = {
-                -- parameters = { "--loglevel=trace" },
-              },
-              hover = { expandAlias = false },
-              type = {
-                castNumberToInteger = true,
-                inferParamType = true,
-              },
-              diagnostics = {
-                disable = { "incomplete-signature-doc", "trailing-space" },
-                -- enable = false,
-                groupSeverity = {
-                  strong = "Warning",
-                  strict = "Warning",
-                },
-                groupFileStatus = {
-                  ["ambiguity"] = "Opened",
-                  ["await"] = "Opened",
-                  ["codestyle"] = "None",
-                  ["duplicate"] = "Opened",
-                  ["global"] = "Opened",
-                  ["luadoc"] = "Opened",
-                  ["redefined"] = "Opened",
-                  ["strict"] = "Opened",
-                  ["strong"] = "Opened",
-                  ["type-check"] = "Opened",
-                  ["unbalanced"] = "Opened",
-                  ["unused"] = "Opened",
-                },
-                unusedLocalExclude = { "_*" },
-              },
-            },
-          },
+        {
+          "gr",
+          function()
+            Snacks.picker.lsp_references()
+          end,
+          nowait = true,
+          desc = "References",
         },
-      },
-    },
+        {
+          "gI",
+          function()
+            Snacks.picker.lsp_implementations()
+          end,
+          desc = "Goto Implementation",
+        },
+        {
+          "gy",
+          function()
+            Snacks.picker.lsp_type_definitions()
+          end,
+          desc = "Goto T[y]pe Definition",
+        },
+        {
+          "<leader>ss",
+          function()
+            Snacks.picker.lsp_symbols({ filter = LazyVim.config.kind_filter })
+          end,
+          desc = "LSP Symbols",
+          has = "documentSymbol",
+        },
+        {
+          "<leader>sS",
+          function()
+            Snacks.picker.lsp_workspace_symbols({ filter = LazyVim.config.kind_filter })
+          end,
+          desc = "LSP Workspace Symbols",
+          has = "workspace/symbols",
+        },
+      })
+
+      opts.diagnostics = {
+        virtual_text = { prefix = "icons" },
+      }
+
+      opts.inlay_hints = {
+        enabled = false,
+      }
+
+      opts.capabilities = opts.capabilities or {}
+      opts.capabilities.workspace = opts.capabilities.workspace or {}
+      opts.capabilities.workspace.didChangeWatchedFiles = {
+        dynamicRegistration = false,
+      }
+    end,
   },
 
   {

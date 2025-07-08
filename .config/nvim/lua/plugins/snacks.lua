@@ -25,11 +25,11 @@ return {
           diff = { builtin = false },
           git = { builtin = false },
         },
-        debug = { scores = false, leaks = false, explorer = false, files = false, proc = true },
+        debug = { scores = false, leaks = false, explorer = false, files = false, proc = false },
         sources = {
           explorer = {
             layout = {
-              preset = "sidebar",
+              preset = "right",
               preview = { main = true, enabled = false },
             },
           },

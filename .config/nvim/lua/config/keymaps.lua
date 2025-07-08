@@ -34,20 +34,26 @@ map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
--- buffers
-map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>bd", function()
-  Snacks.bufdelete()
-end, { desc = "Delete Buffer" })
-map("n", "<leader>bo", function()
-  Snacks.bufdelete.other()
-end, { desc = "Delete Other Buffers" })
-map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
+-- Buffers
+map("n", "<Tab>", ":bnext<CR>", opts)
+map("n", "<S-Tab>", ":bprevious<CR>", opts)
+map("n", "<leader>x", ":bdelete!<CR>", opts) -- close buffer
+map("n", "<leader>x", function()
+  local bufnr = vim.api.nvim_get_current_buf() -- Get the current buffer number
+  local buffers = vim.fn.getbufinfo({ buflisted = 1 }) -- Get list of open buffers
+
+  if #buffers > 1 then
+    vim.cmd("bnext") -- Switch to the next buffer
+  else
+    vim.cmd("enew") -- Open a new empty buffer if it's the last one
+  end
+
+  vim.cmd("bdelete! " .. bufnr) -- Delete the previous buffer
+end, opts)
+
+-- Toogle NeoTree
+map("n", "<C-n>", "<cmd>Neotree toggle<CR>", opts)
+map("i", "<C-n>", "<Esc><cmd>Neotree toggle<CR>", opts)
 
 -- Clear search and stop snippet on escape
 map({ "i", "n", "s" }, "<esc>", function()
@@ -65,7 +71,6 @@ map(
   { desc = "Redraw / Clear hlsearch / Diff Update" }
 )
 
--- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
 map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
 map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
@@ -213,16 +218,6 @@ map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-
--- native snippets. only needed on < 0.11, as 0.11 creates these by default
-if vim.fn.has("nvim-0.11") == 0 then
-  map("s", "<Tab>", function()
-    return vim.snippet.active({ direction = 1 }) and "<cmd>lua vim.snippet.jump(1)<cr>" or "<Tab>"
-  end, { expr = true, desc = "Jump Next" })
-  map({ "i", "s" }, "<S-Tab>", function()
-    return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<S-Tab>"
-  end, { expr = true, desc = "Jump Previous" })
-end
 
 local keymap = vim.keymap -- for conciseness
 -- clear search highlights
