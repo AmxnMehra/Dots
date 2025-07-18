@@ -1,0 +1,71 @@
+/* === YouTube UI Clean + Cosmetic Tweaks === */
+/* Credit to various userstyle communities & cleaned by ChatGPT */
+
+/* ——— Hide Shorts ——— */
+/* Grid view */
+#items.ytd-grid-renderer>ytd-grid-video-renderer:has(ytd-thumbnail-overlay-time-status-renderer[overlay-style="SHORTS"]) {
+  display: none;
+}
+
+/* List view */
+ytd-item-section-renderer:not(:has(ytd-grid-renderer)):has(ytd-thumbnail-overlay-time-status-renderer[overlay-style="SHORTS"]) {
+  display: none;
+}
+
+/* ——— Hide Recommendations / Sidebar ——— */
+#secondary,
+ytd-mini-guide-renderer,
+ytd-guide-renderer {
+  display: none !important;
+}
+
+/* ——— Hide Top Bar (logo, search, etc) ——— */
+.ytd-masthead {
+  margin: 0 !important;
+  display: none !important;
+}
+
+/* ——— Video fills full width ——— */
+#primary {
+  width: 100% !important;
+  flex: 1 !important;
+  max-width: none !important;
+}
+
+.ytd-app {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  margin-left: 0 !important;
+}
+
+html:not(.ytd-watch-flexy) ytd-watch-flexy[flexy] #player {
+  width: 100% !important;
+  max-width: 1400px;
+  margin: 0 auto !important;
+}
+
+/* ——— Bottom Overlay Fix ——— */
+/* Fix weird black/transparent bar below video */
+.ytp-gradient-bottom {
+  background-image: none !important;
+  background: transparent !important;
+}
+
+/* Optional: make video controls more clean */
+.ytp-chrome-bottom {
+  background: rgba(0, 0, 0, 0.5) !important;
+  /* adjust opacity as you like */
+}
+
+/* ——— UI Styling ——— */
+.chip-container {
+  border-radius: 0% !important;
+}
+
+.ytd-thumbnail {
+  border-radius: 10% !important;
+}
+
+.yt-spec-avatar-shape__image {
+  border-radius: 10% !important;
+}
