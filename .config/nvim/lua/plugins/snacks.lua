@@ -25,12 +25,27 @@ return {
           diff = { builtin = false },
           git = { builtin = false },
         },
-        debug = { scores = false, leaks = false, explorer = false, files = false, proc = false },
+        debug = { scores = false, leaks = false, files = false, proc = false },
         sources = {
           explorer = {
             layout = {
               preset = "right",
               preview = { main = true, enabled = false },
+            },
+
+            keys = {
+              ["<C-k>"] = {
+                function(p)
+                  for _, item in ipairs(p.results) do
+                    if item.type == "directory" and item.open then
+                      item.open = false
+                    end
+                  end
+                  p:refresh()
+                end,
+                desc = "Collapse All Folders",
+                mode = { "n", "i" },
+              },
             },
           },
           files_with_symbols = {
