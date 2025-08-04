@@ -53,7 +53,6 @@ end, opts)
 
 -- Toogle NeoTree
 map("n", "<C-n>", "<cmd>Neotree toggle<CR>", opts)
-map("i", "<C-n>", "<Esc><cmd>Neotree toggle<CR>", opts)
 
 -- Clear search and stop snippet on escape
 map({ "i", "n", "s" }, "<esc>", function()
@@ -227,3 +226,8 @@ keymap.set("i", "<C-h>", "<Left>", { desc = "Move left" })
 keymap.set("i", "<C-l>", "<Right>", { desc = "Move right" })
 keymap.set("i", "<C-j>", "<Down>", { desc = "Move down" })
 keymap.set("i", "<C-k>", "<Up>", { desc = "Move up" })
+
+vim.keymap.set("n", "<C-h>", "<Cmd>TmuxNavigateLeft<CR>", { silent = true })
+vim.keymap.set("n", "<C-j>", "<Cmd>TmuxNavigateDown<CR>", { silent = true })
+vim.keymap.set("n", "<C-k>", "<Cmd>TmuxNavigateUp<CR>", { silent = true })
+vim.keymap.set("n", "<C-l>", "<Cmd>TmuxNavigateRight<CR>", { silent = true })
