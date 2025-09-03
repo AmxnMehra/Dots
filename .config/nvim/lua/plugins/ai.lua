@@ -1,5 +1,5 @@
 return {
-  { "zbirenbaum/copilot.lua", dev = true },
+  -- { "zbirenbaum/copilot.lua", dev = true },
   {
     "olimorris/codecompanion.nvim",
     enabled = false,
